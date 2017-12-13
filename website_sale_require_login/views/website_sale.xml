@@ -11,15 +11,15 @@
     
     <template id="cart" inherit_id="website_sale.cart" priority="20">
         <xpath expr="//div[@id='wrap']" position="before">
-            <t t-set="hide_checkout_button" t-value="
+            <t t-set="hide_checkout_button" t-value=" not (
                 user_id != website.user_id and
                 not optional_products and
                 website_sale_order and
                 website_sale_order.website_order_line
-            " />
+            )" />
         </xpath>
         <xpath expr="//a[@href='/shop/checkout']" position="attributes">
-            <attribute name="t-if">hide_checkout_button</attribute>
+            <attribute name="t-if">not hide_checkout_button</attribute>
         </xpath>
     </template>
 
